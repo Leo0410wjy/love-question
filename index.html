@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宝宝你喜欢我吗？</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .no {
+            background-color: #ccc;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://placekitten.com/200/200" alt="Cute Cat">
+        <h2>小宝宝你喜欢我吗？</h2>
+        <button class="yes" onclick="chooseLove('喜欢')">特别喜欢</button>
+        <button class="no" onclick="chooseLove('不喜欢')">不喜欢咋了</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function chooseLove(answer) {
+            const messageElement = document.getElementById("message");
+            if (answer === '喜欢') {
+                messageElement.innerHTML = "❤️ 我也特别喜欢你呀！❤️";
+            } else if (answer === '不喜欢') {
+                messageElement.innerHTML = "求求你喜欢我嘛";
+                createSecondQuestion();
+            }
+        }
+
+        function createSecondQuestion() {
+            const messageElement = document.getElementById("message");
+            messageElement.innerHTML = "求求你喜欢我嘛";
+
+            const secondQuestionDiv = document.createElement('div');
+            secondQuestionDiv.innerHTML = `
+                <button class="yes" onclick="finalAnswer('好吧')">好吧</button>
+                <button class="no" onclick="finalAnswer('逗你玩的')">嘿嘿，我刚刚是逗你玩的，我好喜欢你</button>
+            `;
+            document.querySelector('.container').appendChild(secondQuestionDiv);
+        }
+
+        function finalAnswer(answer) {
+            const messageElement = document.getElementById("message");
+            messageElement.innerHTML = "❤️ 我也特别喜欢你呀！❤️";
+        }
+    </script>
+</body>
+</html>
