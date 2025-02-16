@@ -47,6 +47,16 @@
         h2 {
             font-size: 24px;
         }
+        #message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: #ff4d4d;
+            font-weight: bold;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -55,18 +65,31 @@
         <h2>小宝宝你喜欢我吗？</h2>
         <button class="yes" onclick="chooseLove('喜欢')">特别喜欢</button>
         <button class="no" onclick="chooseLove('不喜欢')">不喜欢咋了</button>
-        <p id="message"></p>
     </div>
+
+    <p id="message"></p>
 
     <script>
         function chooseLove(answer) {
             const messageElement = document.getElementById("message");
+
+            // Clear previous message
+            messageElement.style.display = "none";
+
+            // Show the new message with animation
             if (answer === '喜欢') {
                 messageElement.innerHTML = "❤️ 我也特别喜欢你呀！❤️";
+                messageElement.style.display = "block";
             } else if (answer === '不喜欢') {
                 messageElement.innerHTML = "求求你喜欢我嘛";
+                messageElement.style.display = "block";
                 createSecondQuestion();
             }
+
+            // Refresh the page after a brief delay
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
         }
 
         function createSecondQuestion() {
@@ -84,6 +107,12 @@
         function finalAnswer(answer) {
             const messageElement = document.getElementById("message");
             messageElement.innerHTML = "❤️ 我也特别喜欢你呀！❤️";
+            messageElement.style.display = "block";
+
+            // Refresh the page after a brief delay
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
         }
     </script>
 </body>
